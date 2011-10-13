@@ -64,7 +64,7 @@ alias merge="git merge"
 alias status="git status"
 alias push="git push"
 alias pull="git pull"
-alias hotfix="git commit -a -m=Hotfix && git push"
+alias hotfix="git commit -a -m Hotfix && git push"
 
 ### Экспортировать все
 export PS1 NLSPATH PAGER MAIL LS_COLORS LS_OPTIONS LIBRARY_PATH \
