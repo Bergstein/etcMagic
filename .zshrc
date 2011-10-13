@@ -130,3 +130,10 @@ autoload -U compinit
 compinit
 
 export EDITOR=nano
+
+function command_not_found_handler()
+{
+    echo "Command $0 was not found. See this packages:"
+    apt-cache search $0
+}
+        
