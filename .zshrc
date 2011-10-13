@@ -10,7 +10,7 @@ LS_OPTIONS="-F -B --color=auto"
 
 ### Определения по умолчанию
 ## Я использую MOST. Вам тоже советую, но решайте сами:
-#PAGER=/usr/bin/less
+PAGER=/usr/bin/less
 
 command_oriented_history=1
 HISTCONTROL=ignoreboth
@@ -20,7 +20,6 @@ mesg y
 
 ### Синонимы LS и V
 
-alias hsc="nano /etc/hosts"
 alias -s conf=nano
 alias -s ini=nano
 alias pid="ps -A | grep"
@@ -28,23 +27,42 @@ alias ls="alias ls='ls --color=auto'
 alias grep='grep --colour=auto'"
 alias v="ls $LS_OPTIONS --format=long"
 alias l="v"
-alias upme="apt-get update"
-alias upgme="apt-get upgrade"
-alias aliasc="nano ~/.zshrc"
-alias aptc="nano /etc/apt/sources.list"
-alias phpc="nano /etc/php5/apache2/php.ini"
-alias a2c="nano /etc/apache2/apache2.conf"
-alias webup="service apache2 start"
-alias webdown="service apache2 stop"
+
+# Editors Aliases
+
+alias conf.host="nano /etc/hosts"
+alias conf.zsh="nano ~/.zshrc"
+alias conf.apt="nano /etc/apt/sources.list"
+alias conf.php="nano /etc/php5/apache2/php.ini"
+alias a2.conf="nano /etc/apache2/apache2.conf"
+
+# Apache Aliases
+alias a2.up="service apache2 start"
+alias a2.down="service apache2 stop"
+alias a2.access="tail -n80 /var/log/apache2/access.log"
+alias a2.error="tail -n80 /var/log/apache2/error.log"
+
+
 alias i="mtr google.com"
+
+# APT Aliases
+
+alias update="apt-get update"
+alias upgrade="apt-get upgrade"
 alias hire="apt-get --force-yes --yes install"
-alias hiref="apt-fast --force-yes --yes install"
 alias fire="apt-get --purge remove"
 
-alias upup="apt-get update && apt-get upgrade --force-yes"
-alias ss="sudo -s"
-alias a2log="tail -n80 /var/log/apache2/access.log"
-alias a2err="tail -n80 /var/log/apache2/error.log"
+alias root="sudo -s"
+
+# Git Aliases
+alias master="git checkout master"
+alias branch="git branch"
+alias to="git checkout"
+alias commit="git commit -a"
+alias clone="git clone "
+alias merge="git merge"
+alias status="git status"
+alias push="git push"
 
 ### Экспортировать все
 export PS1 NLSPATH PAGER MAIL LS_COLORS LS_OPTIONS LIBRARY_PATH \
@@ -52,8 +70,8 @@ export PS1 NLSPATH PAGER MAIL LS_COLORS LS_OPTIONS LIBRARY_PATH \
 
 ### Настройка журнала команд
 export HISTFILE=$HOME/.zsh_history
-export HISTSIZE=8192
-export SAVEHIST=8192
+export HISTSIZE=81920
+export SAVEHIST=81920
 
 ### Сокращенные команды CD
 export CDPATH=.:~
@@ -136,4 +154,3 @@ function command_not_found_handler()
     echo "Command $0 was not found. See this packages:"
     apt-cache search $0
 }
-        
